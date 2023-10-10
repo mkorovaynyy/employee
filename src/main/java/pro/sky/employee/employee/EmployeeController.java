@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 public class EmployeeController {
     @Autowired
     private final EmployeeService employeeService;
-    Gson gson = new GsonBuilder()
+    private Gson gson = new GsonBuilder()
             .setPrettyPrinting()
             .create();
 
@@ -22,21 +22,24 @@ public class EmployeeController {
     }
 
     @PutMapping("/add")
-    public String addEmployee(@RequestParam("firstName") @NotNull String firstName, @RequestParam("lastName") @NotNull String lastName) {
-        employeeService.addEmployee(firstName, lastName);
-        return gson.toJson(new Employee(firstName, lastName));
+    public String addEmployee(@RequestParam("firstName") @NotNull String firstName, @RequestParam("lastName") @NotNull String lastName, @RequestParam("salary") @NotNull int salary,
+                              @RequestParam("departmentId") @NotNull int departmentId) {
+        employeeService.addEmployee(firstName, lastName, salary, departmentId);
+        return gson.toJson(new Employee(firstName, lastName, salary, departmentId));
     }
 
     @DeleteMapping("/remove")
-    public String removeEmployee(@RequestParam("firstName") @NotNull String firstName, @RequestParam("lastName") @NotNull String lastName) {
-        employeeService.removeEmployee(firstName, lastName);
-        return gson.toJson(new Employee(firstName, lastName));
+    public String removeEmployee(@RequestParam("firstName") @NotNull String firstName, @RequestParam("lastName") @NotNull String lastName, @RequestParam("salary") @NotNull int salary,
+                                 @RequestParam("departmentId") @NotNull int departmentId) {
+        employeeService.removeEmployee(firstName, lastName, salary, departmentId);
+        return gson.toJson(new Employee(firstName, lastName, salary, departmentId));
     }
 
     @GetMapping("/find")
-    public String findEmployee(@RequestParam("firstName") @NotNull String firstName, @RequestParam("lastName") @NotNull String lastName) {
-        employeeService.findEmployee(firstName, lastName);
-        return gson.toJson(new Employee(firstName, lastName));
+    public String findEmployee(@RequestParam("firstName") @NotNull String firstName, @RequestParam("lastName") @NotNull String lastName, @RequestParam("salary") @NotNull int salary,
+                               @RequestParam("departmentId") @NotNull int departmentId) {
+        employeeService.findEmployee(firstName, lastName, salary, departmentId);
+        return gson.toJson(new Employee(firstName, lastName, salary, departmentId));
     }
 
     @GetMapping("/find")
