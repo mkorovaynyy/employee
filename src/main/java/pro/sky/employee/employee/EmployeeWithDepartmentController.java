@@ -23,15 +23,15 @@ public class EmployeeWithDepartmentController {
         this.employeeService = employeeService;
     }
 
-    @GetMapping("/max-salary")
+    @GetMapping(path = "/max-salary", params = "departmentId")
     public String findEmployeeWithMaxSalaryInDepartment(@RequestParam("departmentId") @NotNull int departmentId) {
         return gson.toJson(employeeService.findMaxSalaryInDepartment(departmentId));
     }
-    @GetMapping("/min-salary")
+    @GetMapping(path = "/min-salary", params = "departmentId")
     public String findEmployeeWithMinSalaryInDepartment(@RequestParam("departmentId") @NotNull int departmentId) {
         return gson.toJson(employeeService.findMinSalaryInDepartment(departmentId));
     }
-    @GetMapping("/all")
+    @GetMapping(path = "/all", params = "departmentId")
     public String findAllEmployeeInDepartment(@RequestParam("departmentId") @NotNull int departmentId) {
         return gson.toJson(employeeService.findAllEmployeeInDepartment(departmentId));
     }
