@@ -3,10 +3,7 @@ package pro.sky.employee.employee;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class EmployeeService {
@@ -50,57 +47,7 @@ public class EmployeeService {
         return -1;
     }
 
-    //Возвращать сотрудника с максимальной зарплатой на основе номера отдела, который приходит в запрос из браузера.
-    public Employee findMaxSalaryInDepartment(int departmentId) {
-        List<Employee> departmentList = employeeList.stream().filter(d -> d.getDepartmentId() == departmentId).collect(Collectors.toList());
-        Collections.sort(departmentList, new Comparator<Employee>() {
-            @Override
-            public int compare(Employee o1, Employee o2) {
-                if (o1.getSalary() > o2.getSalary()) {
-                    return 1;
-                } else if (o1.getSalary() < o2.getSalary()) {
-                    return -1;
-                } else return 0;
-            }
-        });
-        return departmentList.get(departmentList.size() - 1);
-    }
 
-    //Возвращать сотрудника с минимальной зарплатой на основе номера отдела.
-    public Employee findMinSalaryInDepartment(int departmentId) {
-        List<Employee> departmentList = employeeList.stream().filter(d -> d.getDepartmentId() == departmentId).collect(Collectors.toList());
-        Collections.sort(departmentList, new Comparator<Employee>() {
-            @Override
-            public int compare(Employee o1, Employee o2) {
-                if (o1.getSalary() > o2.getSalary()) {
-                    return 1;
-                } else if (o1.getSalary() < o2.getSalary()) {
-                    return -1;
-                } else return 0;
-            }
-        });
-        return departmentList.get(0);
-    }
-
-    //Возвращать всех сотрудников по отделу.
-    public List<Employee> findAllEmployeeInDepartment(int departmentId) {
-        return employeeList.stream().filter(d -> d.getDepartmentId() == departmentId).collect(Collectors.toList());
-    }
-
-    //Возвращать всех сотрудников с разделением по отделам.
-    public List<Employee> findAllEmployeeInAllDepartment() {
-        Collections.sort(employeeList, new Comparator<Employee>() {
-            @Override
-            public int compare(Employee o1, Employee o2) {
-                if (o1.getDepartmentId() > o2.getDepartmentId()) {
-                    return 1;
-                } else if (o1.getDepartmentId() < o2.getDepartmentId()) {
-                    return -1;
-                } else return 0;
-            }
-        });
-        return employeeList;
-    }
 
 
     public int getMaxEmployeeCount() {
