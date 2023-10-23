@@ -1,7 +1,9 @@
-package pro.sky.employee.employee;
+package pro.sky.employee.employee.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pro.sky.employee.employee.model.Employee;
+import pro.sky.employee.employee.service.EmployeeService;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -19,7 +21,7 @@ public class EmployeeController {
 
     @PutMapping("/add")
     public Employee addEmployee(@RequestParam("firstName") @NotNull String firstName, @RequestParam("lastName") @NotNull String lastName, @RequestParam("salary") @NotNull int salary,
-                              @RequestParam("departmentId") @NotNull int departmentId) {
+                                @RequestParam("departmentId") @NotNull int departmentId) {
         employeeService.addEmployee(firstName, lastName, salary, departmentId);
         return new Employee(firstName, lastName, salary, departmentId);
     }

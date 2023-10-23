@@ -1,9 +1,8 @@
-package pro.sky.employee.employee;
+package pro.sky.employee.employee.model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.*;
 
 public class Employee {
     private String firstName;
@@ -13,8 +12,8 @@ public class Employee {
     private static HashMap<Integer, List<Employee>> employeeMap = new HashMap<>();
 
     public Employee(String firstName, String lastName, int salary, int departmentId) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstName = StringUtils.capitalize(firstName.toLowerCase());
+        this.lastName = StringUtils.capitalize(lastName.toLowerCase());
         this.salary = salary;
         this.departmentId = departmentId;
         if(employeeMap.containsKey(departmentId)) {

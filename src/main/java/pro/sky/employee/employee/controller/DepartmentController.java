@@ -1,10 +1,13 @@
-package pro.sky.employee.employee;
+package pro.sky.employee.employee.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import pro.sky.employee.employee.model.Employee;
+import pro.sky.employee.employee.service.DepartmentService;
+import pro.sky.employee.employee.service.EmployeeService;
 
 import javax.validation.constraints.NotNull;
 import java.util.HashMap;
